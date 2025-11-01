@@ -20,7 +20,7 @@ public class BookDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Book> index(){
+    public List<Book> listOfBooks(){
         return jdbcTemplate.query("select * from book", new BeanPropertyRowMapper<>(Book.class));
     }
     public void save(Book book){

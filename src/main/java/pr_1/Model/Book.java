@@ -1,15 +1,19 @@
 package pr_1.Model;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 public class Book {
     private int book_id;
     private Integer person_id;
-    @NotEmpty(message = "Поле должно быть заполнено")
+    @NotEmpty(message = "Поле не должно быть пустым")
     private String book_name;
-    @NotEmpty(message = "Поле должно быть заполнено")
+    @NotEmpty(message = "Поле не должно быть пустым")
     private String book_author;
-    private int book_year;
+    @NotNull(message = "Поле не должно быть пустым")
+    @Min(value = 1, message = "Год должен быть больше 0")
+    private Integer book_year;
 
     public void setBook_id(int book_id) {
         this.book_id = book_id;
@@ -27,7 +31,7 @@ public class Book {
         this.book_author = book_author;
     }
 
-    public void setBook_year(int book_year) {
+    public void setBook_year(Integer book_year) {
         this.book_year = book_year;
     }
 
@@ -47,7 +51,7 @@ public class Book {
         return book_author;
     }
 
-    public int getBook_year() {
+    public Integer getBook_year() {
         return book_year;
     }
 }

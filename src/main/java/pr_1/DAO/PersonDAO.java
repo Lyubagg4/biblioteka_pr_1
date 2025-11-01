@@ -16,7 +16,7 @@ public class PersonDAO {
     public PersonDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    public List<Person> index(){
+    public List<Person> listOfPeople(){
         return jdbcTemplate.query("select * from person", new BeanPropertyRowMapper<>(Person.class));
     }
     public void save(Person person){
@@ -32,6 +32,7 @@ public class PersonDAO {
     public void delete(int id){
         jdbcTemplate.update("delete from person where person_id = ?", id);
     }
+
     public Person personOfBook(int id){
         return jdbcTemplate.query("select * from person p join book b on p.person_id = b.person_id where b.book_id = ?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class))
                 .stream().findAny().orElse(null);
