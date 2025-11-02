@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import pr_1.DAO.BookDAO;
 import pr_1.DAO.PersonDAO;
 import pr_1.Model.Book;
-import pr_1.Model.Person;
 
 @Controller
 @RequestMapping("/books")
@@ -25,8 +24,8 @@ public class BooksController {
 
     @GetMapping()
     public String index(Model model){
-        model.addAttribute("books", bookDAO.index());
-        return "books/index";
+        model.addAttribute("books", bookDAO.listOfBooks());
+        return "books/listOfBooks";
     }
     @GetMapping("/new")
     public String create(@ModelAttribute("book") Book book){
@@ -37,7 +36,7 @@ public class BooksController {
                        @PathVariable("id") int id){
         model.addAttribute("book", bookDAO.show(id));
         model.addAttribute("person", personDAO.personOfBook(id));
-        model.addAttribute("people",personDAO.index());
+        model.addAttribute("people",personDAO.listOfPeople());
         return "books/show";
     }
     @GetMapping("/{id}/edit")
